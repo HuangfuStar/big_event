@@ -2,6 +2,12 @@
 黑马程序员大事件小项目跟练
 
 
+### spring boot 版本选择
+
+![](./imgs/README/171437808468500.png)
+
+
+
 ### git commit message 轻量级规范
 
 ```text
