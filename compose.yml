@@ -1,0 +1,25 @@
+name: big_event
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=big_event
+      - MYSQL_USER=dev_user
+      - MYSQL_PASSWORD=dev123
+      - TZ=Asia/Shanghai
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --init-connect='SET NAMES utf8mb4;'
+      --skip-character-set-client-handshake
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_conf:/etc/mysql/conf.d
+      - ./data:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+volumes:
+  mysql_data:
+  mysql_conf:
