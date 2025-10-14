@@ -13,10 +13,10 @@ public class Result {
     private Object data;
 
     static public Result success() {
-        return new Result(0, "操作成功", null);
+        return new Result(0, "success", null);
     }
     static public Result success(Object data) {
-        return new Result(0, "操作成功", data);
+        return new Result(0, "success", data);
     }
 
     static public Result error(String msg) {

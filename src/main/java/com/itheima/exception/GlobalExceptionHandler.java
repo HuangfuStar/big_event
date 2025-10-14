@@ -12,6 +12,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public Result handleException(Exception e) {
         log.info(e.getMessage());
-        return Result.error("error");
+        return Result.error("Invalid request param");
     }
 }
