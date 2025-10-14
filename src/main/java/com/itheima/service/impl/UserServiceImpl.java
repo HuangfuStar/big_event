@@ -30,5 +30,20 @@ public class UserServiceImpl implements UserService {
         userMapper.deleteByUsername(username);
     }
 
+    @Override
+    public void updateUserByUsername(User user) {
+        userMapper.updateUserByUsername(user);
+    }
+
+    @Override
+    public void updateAvatarByUsername(User user) {
+        userMapper.updateAvatarByUsername(user);
+    }
+
+    @Override
+    public void updatePasswordByUsername(User user) {
+        userMapper.updatePasswordByUsername(user);
+    }
+
 
 }

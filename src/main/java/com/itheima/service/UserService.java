@@ -11,4 +11,10 @@ public interface UserService {
     void register(User user);
 
     void deleteByUsername(String  username);
+
+    void updateUserByUsername(User user);
+
+    void updateAvatarByUsername(User user);
+
+    void updatePasswordByUsername(User user);
 }

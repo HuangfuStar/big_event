@@ -2,19 +2,20 @@ package com.itheima.controller;
 
 
 import com.itheima.pojo.Result;
+import com.itheima.pojo.UpdatePwdDTO;
 import com.itheima.pojo.User;
 import com.itheima.service.UserService;
 import com.itheima.utils.JwtUtil;
 import com.itheima.utils.Md5Util;
 import com.itheima.utils.ThreadLocalUtil;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -61,5 +62,33 @@ public class UserController {
         user.setPassword(null);
 
         return Result.success(user);
+    }
+
+    @PutMapping("/update")
+    public Result update(@RequestBody @Validated User user) {
+        user.setUsername(ThreadLocalUtil.get());
+        userService.updateUserByUsername(user);
+        return Result.success();
+    }
+
+    @PatchMapping("/updateAvatar")
+    public Result updateAvatarUrl(@RequestParam(required = false) @URL @NotEmpty String avatarUrl) {
+        String username = ThreadLocalUtil.get();
+        User user = User.builder().username(username).user_pic(avatarUrl).build();
+        userService.updateAvatarByUsername(user);
+        return Result.success();
+    }
+
+    @PatchMapping("/updatePwd")
+    public Result updatePwd(
+            @RequestBody @Validated UpdatePwdDTO updatePwdDTO) {
+        String username = ThreadLocalUtil.get();
+        User user = userService.findByUsername(username);
+        if (user == null) return Result.error("用户不存在");
+        if (!Md5Util.getMD5String(updatePwdDTO.getOldPwd()).equals(user.getPassword())) return Result.error("旧密码错误");
+        user.setPassword(Md5Util.getMD5String(updatePwdDTO.getNewPwd()));
+        userService.updatePasswordByUsername(user);
+
+        return Result.success();
     }
 }
