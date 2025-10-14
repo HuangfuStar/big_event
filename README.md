@@ -1,12 +1,24 @@
 # big_event
-黑马程序员大事件小项目跟练
 
+黑马程序员大事件小项目跟练
 
 ### spring boot 版本选择
 
 ![](./imgs/README/171437808468500.png)
 
+### 参数校验
 
+使用SpringValidation，对注册接口的参数进行合法性校验
+
+1. 引l入 Spring Validation 起步依赖
+   ```xml
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+   ```
+2. 在 Controller 类上添加 @Validated 注解
+3. 在参数前面添加 @Pattern 注解
 
 ### git commit message 轻量级规范
 
