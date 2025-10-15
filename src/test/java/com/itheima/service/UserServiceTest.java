@@ -1,11 +1,10 @@
 package com.itheima.service;
 
-import com.itheima.pojo.User;
+import com.itheima.pojo.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.Assert;
 
 @SpringBootTest
 public class UserServiceTest {
@@ -20,7 +19,4 @@ public class UserServiceTest {
         user = userService.findByUsername("adminfdsafdasfdasfdddsfuiewhtg");
         Assertions.assertNull(user);
     }
-
-
-
 }

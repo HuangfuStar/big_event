@@ -1,5 +1,6 @@
-package com.itheima.pojo;
+package com.itheima.pojo.entity;
 
+import com.itheima.pojo.BaseEntity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     private String username;
     private String password;
     @NotEmpty

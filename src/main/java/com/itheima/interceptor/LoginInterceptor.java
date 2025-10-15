@@ -1,7 +1,9 @@
 package com.itheima.interceptor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itheima.mapper.UserMapper;
 import com.itheima.pojo.Result;
+import com.itheima.pojo.entity.User;
 import com.itheima.utils.JwtUtil;
 import com.itheima.utils.ThreadLocalUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +19,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired
     JwtUtil jwtUtil;
+
+    @Autowired
+    UserMapper userMapper;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -37,6 +42,17 @@ public class LoginInterceptor implements HandlerInterceptor {
             return false;
         }
         String username = jwtUtil.getUsernameFromToken(token);
+        User user = userMapper.findByUsername( username);
+        if (user == null) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json;charset=UTF-8");
+
+            Result result = Result.error("Token is invalid");
+            String json = objectMapper.writeValueAsString(result);
+
+            response.getWriter().write(json);
+            return false;
+        }
         ThreadLocalUtil.set(username);
         return true;
     }

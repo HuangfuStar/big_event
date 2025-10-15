@@ -1,7 +1,6 @@
 package com.itheima.service;
 
-import com.itheima.pojo.User;
-import jakarta.validation.constraints.Pattern;
+import com.itheima.pojo.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service

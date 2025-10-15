@@ -1,7 +1,7 @@
 package com.itheima.service.impl;
 
 import com.itheima.mapper.UserMapper;
-import com.itheima.pojo.User;
+import com.itheima.pojo.entity.User;
 import com.itheima.service.UserService;
 import com.itheima.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;

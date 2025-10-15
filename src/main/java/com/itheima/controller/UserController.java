@@ -3,7 +3,7 @@ package com.itheima.controller;
 
 import com.itheima.pojo.Result;
 import com.itheima.pojo.UpdatePwdDTO;
-import com.itheima.pojo.User;
+import com.itheima.pojo.entity.User;
 import com.itheima.service.UserService;
 import com.itheima.utils.JwtUtil;
 import com.itheima.utils.Md5Util;
@@ -11,7 +11,6 @@ import com.itheima.utils.ThreadLocalUtil;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Param;
 import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

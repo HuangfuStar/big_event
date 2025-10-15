@@ -1,6 +1,6 @@
 package com.itheima.mapper;
 
-import com.itheima.pojo.User;
+import com.itheima.pojo.entity.User;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
