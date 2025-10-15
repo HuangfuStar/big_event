@@ -1,6 +1,8 @@
 spring:
   application:
     name: big-event
+  profiles:
+    active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url:  jdbc:mysql://localhost:3306/big_event
@@ -11,3 +13,22 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
+#
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: prod
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: test

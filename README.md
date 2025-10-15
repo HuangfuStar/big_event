@@ -20,6 +20,52 @@
 2. 在 Controller 类上添加 @Validated 注解
 3. 在参数前面添加 @Pattern 注解
 
+常用 参数校验注解
+
+- Pattern
+- Size
+- NotBlank
+- NotNull
+- Length
+- URL
+- Past
+-  Future
+-  Email
+
+### 自定义参数校验器
+
+
+
+### JWT 登录校验
+
+- 创建拦截器
+  - 创建一个 Component 类继承 HandlerInterceptor
+  - 实现 preHandler 方法和 postHandler 方法
+  - 创建一个 拦截器配置类 Configuration 继承 WebMvcConfigurer
+  - 重写 addInterceptors 方法
+  - 在方法中添加拦截器
+
+
+- 注册拦截器
+
+
+
+### 多环境配置文件管理
+
+1. 单文件配置
+   - 在 yml 中用 --- 分割会不同的环境配置
+   - 在第一个部分中通过 spring.profiles.active 指定当前环境
+   - 在其他的部分中通过 spring.config.activate.on-profile 指定当前环境名称
+2. 多文件配置
+    - 在 resources 文件夹下创建 application-{环境名称}.yml 文件
+    - 在 application.yml 中通过  spring.profiles.active 指定当前环境
+3. 多环境分组
+    - 在 resources 文件夹下创建 application-{分组环境名称}.yml 文件
+    - 在 application.yml 中通过  spring.profiles.group 指定当前环境分组
+    - 在 spring.profiles.active 指定当前分组
+
+
+
 ### git commit message 轻量级规范
 
 ```text
@@ -28,6 +74,42 @@
 [optional body]
 
 [optional footer(s)]
+```
+
+
+### 使用 redis
+
+0. 安装 redis
+```yml
+services:
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+```
+
+1. 引入 redis 起步依赖\
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+
+```
+2. 配置 redis
+```yml
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: <PASSWORD>
+      database: 0
 ```
 
 **type**
